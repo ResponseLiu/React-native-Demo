@@ -22,11 +22,16 @@ import Next from './Home/NextPage'
 import TabbarItem from './TabbarItem'
 import hotSale from './Three/Three'
 import realOrder from './Four/Four'
+import  Root from '../ReduceTestIndex/Root'
+import webview from '../Mei_tuan/Three/webView'
+import happy from '../Mei_tuan/Three/webView'
+const home = StackNavigator(
 
-const  tabbar = TabNavigator({
+    {
+        Home:{screen: Home},
 
-    home:{screen: Home,
-
+    },{
+        headerMode: 'none',
         navigationOptions: ({ navigation }) => ({
             tabBarLabel:'首页',
             tabBarIcon: ({ focused, tintColor }) => (
@@ -38,11 +43,17 @@ const  tabbar = TabNavigator({
                 />
             )
         }),
-    },
-    Three:{screen: hotSale,
+    }
+);
+const three = StackNavigator(
 
+    {
+        hotSale:{screen:hotSale},
+
+    },{
+        headerMode: 'none',
         navigationOptions: ({ navigation }) => ({
-            tabBarLabel:'热卖',
+            tabBarLabel:'附近',
             tabBarIcon: ({ focused, tintColor }) => (
                 <TabbarItem
                     tintColor={tintColor}
@@ -52,9 +63,15 @@ const  tabbar = TabNavigator({
                 />
             )
         }),
-    },
-    Four:{screen:realOrder,
+    }
+)
+const Four = StackNavigator(
 
+    {
+        realOrder:{screen:realOrder},
+
+    },{
+        headerMode: 'none',
         navigationOptions: ({ navigation }) => ({
             tabBarLabel:'订单',
             tabBarIcon: ({ focused, tintColor }) => (
@@ -66,9 +83,15 @@ const  tabbar = TabNavigator({
                 />
             )
         }),
-    },
-    order:{screen:Order,
+    }
+);
+const order = StackNavigator(
 
+    {
+        Order:{screen:Order},
+
+    },{
+        headerMode: 'none',
         navigationOptions: ({ navigation }) => ({
             tabBarLabel:'我的',
             tabBarIcon: ({ focused, tintColor }) => (
@@ -77,27 +100,41 @@ const  tabbar = TabNavigator({
                     focused={focused}
                     normalImage={require('../Demo/tabbar的副本/pfb_tabbar_merchant@2x.png')}
                     selectedImage={require('../Demo/tabbar的副本/pfb_tabbar_merchant_selected@2x.png')}
-                />
+    />
             )
         }),
     }
+)
+export const tabbar = TabNavigator({
+
+    home:{screen:home},
+    three:{screen:three},
+    Four:{screen:Four},
+    order:{screen:order},
 });
-const Navigator = StackNavigator(
+
+export  const Navigator = StackNavigator(
     {
-        Tab: { screen: tabbar},
-        Next:{ screen:Next}
+        Tab: {screen: tabbar},
+        web :{screen:webview},
+        Next:{screen:Next}
 
     },
     {
         navigationOptions: {
-            headerStyle:{backgroundColor:'#06C1AE'},
-            headerBackTitle: null,
+        headerStyle:{backgroundColor:'#06C1AE'},
+        headerBackTitle: null,
             headerTintColor: 'white',
             showIcon: true,
-        },
+    },
     }
 );
-export default Navigator
+export  const  Login = StackNavigator ({
 
+    login:{screen:Root},
+    Tab: {screen: Navigator},
 
+},{
 
+    headerMode:'none',
+});

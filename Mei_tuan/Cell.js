@@ -18,12 +18,9 @@ import {
 export default class Cell extends Component {
 
     render() {
-        const {imageUrl} = {
-            url:this.props.url
 
-
-        };
         return (
+
             <View style={styles.container}>
 
                 <View>
@@ -35,10 +32,12 @@ export default class Cell extends Component {
 
                     <View>
                         <Text style={{fontSize:18}}>{this.props.text}</Text>
-                        <Text style={{marginTop:5,fontSize:15,color:'rgb(150,150,150)'}}>{this.props.detail}</Text>
+                        <Text style={{marginTop:5,fontSize:15,color:'rgb(150,150,150)',width:270}}>{this.props.detail}</Text>
                     </View>
                     <View style={styles.textBottom}>
+
                         <Text style={styles.price}>{this.props.price}元</Text>
+
                     </View>
 
                 </View>
@@ -70,11 +69,9 @@ const styles = StyleSheet.create({
     },
     price: {
 
-
-        color:'red',
+        color:'#06C1AE',
         fontSize:16
-
     },
 
 });
-module.exports=Cell
+module.exports=Cell;

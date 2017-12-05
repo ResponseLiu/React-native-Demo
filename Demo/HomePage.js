@@ -22,7 +22,7 @@ export default class HomePage extends Component {
         return (
             <View style={styles.container}>
                 <Text style={styles.text}>这是首页</Text>
-                <TouchableOpacity style={styles.nextBtn} onPress={this._gotoNextPage.bind(this)}>
+                <TouchableOpacity style={styles.nestylesxtBtn} onPress={this._gotoNextPage.bind(this)}>
                     <Text style={styles.nextText}>进入下一页</Text>
                 </TouchableOpacity>
             </View>

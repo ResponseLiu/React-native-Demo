@@ -7,8 +7,8 @@ import React from 'react';
 import{
     AppRegistry,
 } from 'react-native';
- // import Root from './ReduceTestIndex/Root'
-//  import Root from './Demo/Main'
-import Root from './Mei_tuan/Mei_tuan'
-
-AppRegistry.registerComponent('ReactDemo', () => Root)
+//import Root from './ReduceTestIndex/Root'
+ //  import Root from './Demo/Main'
+ //import Root from './Mei_tuan/Mei_tuan'
+  import Root from './Mei_tuan/WhichPage'
+AppRegistry.registerComponent('ReactDemo', () => Root);

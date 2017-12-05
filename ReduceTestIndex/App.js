@@ -8,39 +8,58 @@ import {
     Text,
     View,
     TouchableOpacity,
-    Image
+    Image,
+    Alert
 } from 'react-native';
  import {connect} from 'react-redux';
  import {doLogin} from '../Actions/LoginAction'
 
+import {StackNavigator, TabNavigator} from "react-navigation";
 var Dimensions = require('Dimensions');
 var ScreenWidth = Dimensions.get('window').width;
 var ScreenHeight = Dimensions.get('window').height;
 
  class NextPage extends Component {
 
+     shouldComponentUpdate(nextProps) {
+
+     if (nextProps.status === 'done' ) {
+
+         const { navigate } = this.props.navigation;
+
+           navigate('Tab');
+
+         }
+
+         return true;
+
+     }
     render() {
 
         let  tips;
 
         if (this.props.status === 'init') {
 
-             tips = '点击登录';
+             tips ="准备登陆";
         }
         else if (this.props.status === 'doing') {
-            tips = '正在登录...';
-        }
-        else if (this.props.status === 'done' && !this.props.isSuccess) {
-            tips = '登录失败, 请重新登录';
-        }
-        else if (this.props.status ==='done' && this.props.isSuccess){
 
-            tips = '登录成功!'
+            tips = "登陆中...";
         }
+        else if (this.props.status === 'done' ) {
+
+            tips = this.props.user.data;
+
+        }
+
         return (
 
             <View style={styles.container} >
 
+                <Image source={require('../Mei_tuan/Home/bg.jpg')}
+                       style={{position:'absolute',
+                           width:ScreenWidth,
+                           height:ScreenHeight}}/>
                 <Text style={styles.text}>Welcome</Text>
 
                 <View style={styles.InputView}>
@@ -57,32 +76,33 @@ var ScreenHeight = Dimensions.get('window').height;
 
                 </TouchableOpacity>
 
+
             </View>
         );
     }
-
      handleLogin()
      {
-
-
          this.props.dispatch(doLogin());
 
      }
 }
+    function select(store) {
 
-function select(store)
-{
-    return {
-        status: store.loginIn.status,
-    isSuccess: store.loginIn.isSuccess,
-    user: store.loginIn.user
-    }
-}
+        return {
 
+            status: store.loginIn.status,
+            isSuccess: store.loginIn.isSuccess,
+            user: store.loginIn.user
+
+        }
+
+
+  }
 var styles = StyleSheet.create({
     container: {
 
-        backgroundColor:'blue',
+        position:'absolute',
+        backgroundColor:'rgba(255,255,255,0)',
         width:ScreenWidth,
         height:ScreenHeight
 
@@ -101,7 +121,6 @@ var styles = StyleSheet.create({
         marginTop:100,
         marginLeft:50,
         borderRadius:25,
-
       },
     SecureInputView:{
 
@@ -125,7 +144,6 @@ var styles = StyleSheet.create({
         flexDirection:'row',
         justifyContent:'center',
         alignItems:'center',
-
     },
     loginText:{
 

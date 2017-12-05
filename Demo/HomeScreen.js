@@ -18,14 +18,19 @@ export  default  class HomeScreen extends React.Component {
         return (
             <View style={styles.container}>
 
-                <Text style={styles.txt} onPress={()=>navigate('chat',{ user: '刘少闯' } )}>呵呵哒</Text>
+                <Text
+                    style={styles.txt}
+                    onPress={()=>navigate('chat',{ user: '刘少闯' } )}>呵呵哒</Text>
+
             </View>
         );
     }
 }
 const SimpleApp = StackNavigator({
+
     Home: { screen: HomeScreen },
     chat: { screen: ChatScreen },
+
 });
 const styles=StyleSheet.create({
     container:{
@@ -40,4 +45,5 @@ const styles=StyleSheet.create({
         fontSize:30
     }
 });
+
 module.exports=SimpleApp;

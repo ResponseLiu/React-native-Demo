@@ -159,7 +159,6 @@ export  default  class Home extends React.Component {
                         style={{width: 30,height :30,marginLeft:10}}/>
                     <Text style={{marginLeft:5}}>猜你喜欢</Text>
 
-
                 </View>
 
                 <FlatList
@@ -173,11 +172,7 @@ export  default  class Home extends React.Component {
                 />
 
             </View>
-
-
         );
-
-
     };
     _renderScrollView = () => {
         return (
@@ -207,14 +202,11 @@ export  default  class Home extends React.Component {
                         marginLeft:10
                         }}
                            source={require('../Demo/Image/ad1的副本.png')}/>
-
                 </View>
                 {this._rendMiddleView()}
                 {this._rendYoulikeView()}
 
-
             </ScrollView>
-
         );
     };
     onScrollToEnd=(e)=>{
@@ -226,7 +218,6 @@ export  default  class Home extends React.Component {
             currendPage:current
 
         });
-
     };
     renderCircle(){
 
@@ -234,15 +225,12 @@ export  default  class Home extends React.Component {
 
         for(var i = 0;i<2;i++){
 
-
             style = (i === this.state.currendPage)?{color:'orange'}:{color:'gray'};
-
             itemArr.push(
 
                 <Text key={i}
                       style={[{fontSize:18},style]}>&bull;</Text>
             );
-
         }
         return itemArr;
     }
@@ -271,9 +259,7 @@ export  default  class Home extends React.Component {
                              contentContainerStyle={flatListStyles.list}//设置cell的样式
                              pageSize={4}
                              scrollEnabled={false}
-
                          />
-
                 </View>
 
             );
@@ -292,8 +278,6 @@ export  default  class Home extends React.Component {
                 <Text style={flatListStyles.AddressStyle}></Text>
 
             </View>
-
-
         );
     };
     _rendMiddleView = () => {
@@ -359,17 +343,12 @@ export  default  class Home extends React.Component {
                         <Image
                             source={require('../Demo/Image/hot_3的副本.png') }
                             style={{width: 40,height:40,marginRight:20}}/>
-
-
                     </View>
 
                 </View>
             </View>
-
-
         );
     };
-
     render() {
 
 
@@ -379,9 +358,6 @@ export  default  class Home extends React.Component {
 
                 {this._renderHeader()}
                 {this._renderScrollView()}
-
-
-
 
             </View>
 

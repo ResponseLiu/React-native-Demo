@@ -97,14 +97,14 @@ export default class ReactDemo extends Component {
             <View style={styles.container}>
 
                <ScrollView
-                   style={{backgroundColor:'white', width:ScreenWidth,flexDirection: 'row',paddingBottom:10,paddingTop:10}  }
-                   horizontal={true}
-                   showsHorizontalScrollIndicator={false}
-                   pagingEnabled={true}>
+                style={{backgroundColor:'white', width:ScreenWidth,flexDirection: 'row',paddingBottom:10,paddingTop:10}  }
+                horizontal={true}
+                showsHorizontalScrollIndicator={false}
+                pagingEnabled={true}>
 
-                   {this.renderScrollItemView()}
+                {this.renderScrollItemView()}
 
-               </ScrollView>
+            </ScrollView>
 
             </View>
         );
@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
 
     container: {
 
-        flexDirection: 'row',//设置横向布局
+        // flexDirection: 'row',//设置横向布局
 
     },
     welcome: {
@@ -151,5 +151,4 @@ const styles = StyleSheet.create({
 
     },
 });
-
 AppRegistry.registerComponent('ReactDemo', () => ReactDemo);

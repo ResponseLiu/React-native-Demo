@@ -14,127 +14,137 @@ import {
     Text,
     View,
     TouchableOpacity,
-    FlatList
+    FlatList,
+    DeviceEventEmitter
 } from 'react-native';
 import api from  '../api'
 import Cell from '../Cell'
 import TopScroll from '../Home/TopScroll'
 import Middle from '../Home/MiddelCompent'
+import FetchUtil  from  '../Home/FetchUtil'
 export default class ReactDemo extends Component {
 
     static navigationOptions = ({ navigation }) => ({
 
         title: '首页',
         color:'white',
-        headerStyle: { backgroundColor: 'white' },
+        headerStyle:{backgroundColor:'#06C1AE'},
+
     });
-// 构造
+       // 构造
   constructor(props) {
-    super(props);
-    // 初始状态
+    super(props)
+      // 初始状态
     this.state = {
 
         data:[],
-        refreshing:false
-
+        refreshing:true
     };
   }
-    fetchData() {
+  fetchData() {
 
-        fetch(api.recommend)
-            .then((response) => response.json())
-            .then((responseData) => {
-                let data = responseData.data;
-                let dataBlob = [];
-                let i = 0;
-                data.map(function (item) {
-                    dataBlob.push({
-                        key: i,
-                        value: item,
-                    });
-                    i++;
-
+        let fetchtil = new FetchUtil();
+        fetchtil.getUrl(api.recommend).then((responseData)=>{
+            let data = responseData.data;
+            let dataBlob = [];
+            let i = 0;
+            data.map(function (item) {
+                dataBlob.push({
+                    key: i,
+                    value: item,
                 });
-                this.setState({
+                i++;
+            });
+            this.setState({
 
-                    data: dataBlob,
-                    refreshing:false
+                data: dataBlob,
+                refreshing:false
 
-                });
-                data = null;
-                dataBlob = null;
-            })
-            .catch((error) => {
-                alert(error)
-            })
-            .done();
+            });
+            data = null;
+            dataBlob = null;
+
+        }).catch((error)=>{
+
+        }).done();
     }
     componentDidMount() {
 
         this.fetchData();
+
+        this.listener = DeviceEventEmitter.addListener('back',(e)=>{
+
+            alert("回调执行")
+        });
+    }
+    componentWillUnmount() {
+
+        this.listener.remove()
     }
     itemClick(item, index) {
 
-
-        alert('alert')
-          // const { navigate } = this.props.navigation;
-          // navigate('Next',{ user: 'test' } );
-
+        const { navigate } = this.props.navigation;
+        navigate('web');
     }
     _comSeparater = ()=> {
 
         return (
+
             <View style={{height: 1, backgroundColor: 'rgb(230,230,230)'}}/>
         );
     };
-
     _renderItem=({item,index})=>{
 
         return (
-
-
                 <View>
-                    <TouchableOpacity onPress={this.itemClick}>
+
+                    <TouchableOpacity onPress={this.itemClick.bind(this,item,index)}>
                     <Cell text={item.value.mname}
                           detail={item.value.title}
                           price={item.value.price}
                           url={item.value.squareimgurl}/>
                     </TouchableOpacity>
+
                 </View>
-
         );
-
     };
     renderHeader =()=>{
 
-       return (
+           return (
 
-           <View style={{backgroundColor:'rgb(230,230,230)'}}>
-               <TopScroll/>
+               <View style={{backgroundColor:'rgb(230,230,230)'}}>
+                   <TopScroll/>
 
-               <Middle />
-           </View>
+                   <Middle />
+               </View>
        );
-
-    }
+    };
     keyExtractor(item, index) {
+
         return item.key
     }
     render() {
+
         return (
             <View style={styles.container}>
+
                 <FlatList
+                    removeClippedSubviews={false}
                     data={this.state.data}
                     style={{backgroundColor: 'rgba(240,240,240,1)'}}
                     ItemSeparatorComponent={this._comSeparater}
                     keyExtractor={this.keyExtractor}
-                    renderItem={this._renderItem}
+                    renderItem={this._renderItem.bind(this)}
                     refreshing={this.state.refreshing}
                     showsVerticalScrollIndicator={false}
                     showsHorizontalScrollIndicator={false}
                     ListHeaderComponent={this.renderHeader}
-                />
+                    onRefresh={()=>{
 
+                        this.fetchData()
+
+                    }}
+                />
             </View>
         );
     }

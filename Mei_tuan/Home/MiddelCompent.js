@@ -6,7 +6,6 @@
  * https://github.com/facebook/react-native
  * @flow
  */
-
 import React, { Component } from 'react';
 import {
     AppRegistry,
@@ -33,6 +32,5 @@ const styles = StyleSheet.create({
         marginTop:5,
         paddingBottom:5
     },
-
 });
 AppRegistry.registerComponent('ReactDemo', () => ReactDemo);

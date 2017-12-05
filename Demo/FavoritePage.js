@@ -13,13 +13,12 @@ export default class FavorPage extends Component {
 
     render() {
         return (
-            <View style={styles.container}>
+            <View  style={styles.container}>
                 <Text style={styles.text}>这是收藏页面</Text>
             </View>
         );
     }
 }
-
 var styles = StyleSheet.create({
     container: {
         flex:1,
