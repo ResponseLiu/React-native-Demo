@@ -6,4 +6,4 @@ import loginIn  from './reducers';
 const rootReducer = combineReducers({
     loginIn: loginIn
 });
-export default rootReducer;
+export default ;rootReducer

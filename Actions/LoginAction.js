@@ -21,8 +21,6 @@ export function doLogin()
              dispatch(loginSuccess(false, null));
 
         }).done();
-
-
     }
 }
 function isLogining()
